@@ -7,25 +7,43 @@
 
 <!-- badges: end -->
 
-The goal of xprmntr is to …
+The goal of `xprmntr` is to let users build behavioural experiments in R
+run through the browser. Initially, the intention is to provide wrappers
+to the [jspsych](https://www.jspsych.org/) javascript library.
 
 ## Installation
 
-You can install the released version of xprmntr from
-[CRAN](https://CRAN.R-project.org) with:
-
-``` r
-install.packages("xprmntr")
-```
-
-And the development version from [GitHub](https://github.com/) with:
+The development version can be installed from
+[GitHub](https://github.com/) with:
 
     # install.packages("devtools")
     devtools::install_github("djnavarro/xprmntr")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+Simple example that implements a variation of demo 2 from the `jspsych`
+library examples.
 
-    library(xprmntr)
-    ## basic example code
+``` r
+library(xprmntr)
+library(magrittr)
+
+# stimuli, prompt, response options
+img <- file.path(
+  system.file("extdata", package = "rainbowr"),
+  c("rainbow.svg", "transgender.svg", "bisexual.svg"))
+txt <- "Do you like this flag? (Y or N)"
+opt <- c(89, 78)
+
+# create an experiment with three trials
+xpt <- xpt_create() %>%
+  xpt_image_keyboard_response(stimulus = img[1], choices = opt, prompt = txt) %>%
+  xpt_image_keyboard_response(stimulus = img[2], choices = opt, prompt = txt) %>%
+  xpt_image_keyboard_response(stimulus = img[3], choices = opt, prompt = txt)
+```
+
+To
+
+``` r
+xpt_write(xpt, "~/Desktop/expt.html")
+```
