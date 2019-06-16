@@ -2,9 +2,7 @@ library(xprmntr)
 library(magrittr)
 
 # stimuli, prompt, response options
-img <- file.path(
-  system.file("extdata", package = "rainbowr"),
-  c("rainbow.svg", "transgender.svg", "bisexual.svg"))
+img <- file.path(system.file("extdata", package = "rainbowr"), c("rainbow.svg", "transgender.svg", "bisexual.svg"))
 txt <- "Do you like this flag? (Y or N)"
 opt <- c(89, 78)
 
