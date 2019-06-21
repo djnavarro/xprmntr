@@ -12,15 +12,14 @@ jspsych_create <- function() {
 
 #' Add trial that shows an image and respond with keyboard
 #' @param xpt the experiment object
-#' @param stimulus path to an image file
-#' @param choices numeric codes for allowed responses
-#' @param prompt text of the response prompt
+#' @param type the type of trial
+#' @param ... arguments passed to the trial plugin
 #' @export
-jspsych_add <- function(xpt, type, options = list()) {
+jspsych_add <- function(xpt, type, ...) {
 
   # append the trial information to the list
   trial_number <- length(xpt$trial) + 1
-  xpt$trial[[trial_number]] <- c(list(type = type), options)
+  xpt$trial[[trial_number]] <- c(list(type = type), list(...))
 
   # specify path to plugin file
   plugin <- file.path("plugins", paste0("jspsych-", type, ".js"))
@@ -36,11 +35,11 @@ jspsych_add <- function(xpt, type, options = list()) {
 #' Options on initialisation
 #'
 #' @param xpt the experiment
-#' @param options list of options
+#' @param ... arguments passed to init
 #' @export
-jspsych_init <- function(xpt, options = list()) {
+jspsych_init <- function(xpt, ...) {
 
-  xpt$init <- options
+  xpt$init <- list(...)
   return(xpt)
 
 }
