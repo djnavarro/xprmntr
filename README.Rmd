@@ -35,22 +35,27 @@ Simple example that implements a variation of demo 2 from the `jspsych` library 
 library(xprmntr)
 library(magrittr)
 
-# stimuli, prompt, response options
-img <- file.path(
-  system.file("extdata", package = "rainbowr"),
-  c("rainbow.svg", "transgender.svg", "bisexual.svg"))
-txt <- "Do you like this flag? (Y or N)"
-opt <- c(89, 78)
+# vector of file paths to the resources to be included
+img <- c("rainbow.svg", "transgender.svg", "bisexual.svg")
+img <- file.path(system.file("extdata", package = "rainbowr"), img)
 
 # create an experiment with three trials
-xpt <- xpt_create() %>%
-  xpt_image_keyboard_response(stimulus = img[1], choices = opt, prompt = txt) %>%
-  xpt_image_keyboard_response(stimulus = img[2], choices = opt, prompt = txt) %>%
-  xpt_image_keyboard_response(stimulus = img[3], choices = opt, prompt = txt)
+xpt <- jspsych_create(files = img) %>%
+  jspsych_add(type = "image-keyboard-response", stimulus = res("rainbow.svg"), 
+              prompt = "Do you like this flag? (Y or N)", choices = c(89, 78)) %>%
+  jspsych_add(type = "image-keyboard-response", stimulus = res("transgender.svg"), 
+              prompt = "Do you like this flag? (Y or N)", choices = c(89, 78)) %>%
+  jspsych_add(type = "image-keyboard-response", stimulus = res("bisexual.svg"),
+              prompt = "Do you like this flag? (Y or N)", choices = c(89, 78)) %>%
+  jspsych_add(type = "survey-likert", questions = list(list(
+    prompt = "How much did you enjoy this?", 
+    labels = c("a lot", "not much", "not at all"), required = TRUE))) %>%
+  jspsych_init(default_iti = 250)
+
 ```
 
-To 
+Write self-contained experiment to a directory:
 
 ```{r eval=FALSE}
-xpt_write(xpt, "~/Desktop/expt.html")
+jspsych_write(xpt, "~/Desktop/expt")
 ```
