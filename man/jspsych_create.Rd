@@ -4,7 +4,10 @@
 \alias{jspsych_create}
 \title{Initialise an experiment}
 \usage{
-jspsych_create()
+jspsych_create(files)
+}
+\arguments{
+\item{files}{character listing files to include}
 }
 \description{
 Initialise an experiment

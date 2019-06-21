@@ -1,13 +1,24 @@
 #' Initialise an experiment
+#'
+#' @param files character listing files to include
 #' @export
-jspsych_create <- function() {
+jspsych_create <- function(files) {
   xpt <- list()
   xpt$head <- list()
   xpt$head$script <- "jspsych.js"
   xpt$head$style <- file.path("css", "jspsych.css")
   xpt$trial <- list()
   xpt$init <- list()
+  xpt$files <- files
   return(xpt)
+}
+
+#' Refer to a resource file
+#'
+#' @param file path
+#' @export
+res <- function(file) {
+  file.path("resources", file)
 }
 
 #' Add trial that shows an image and respond with keyboard
@@ -32,6 +43,7 @@ jspsych_add <- function(xpt, type, ...) {
   return(xpt)
 }
 
+
 #' Options on initialisation
 #'
 #' @param xpt the experiment
@@ -55,6 +67,8 @@ jspsych_write <- function(xpt, path) {
   utils::unzip(
     zipfile = system.file("extdata", "jspsych-6.0.5.zip", package = "xprmntr"),
     exdir = path)
+  dir.create(file.path(path, "resources"))
+  file.copy(xpt$files, file.path(path, "resources"))
 
   # write the experiment to a js string
   task <- c(list(timeline = xpt$trial), xpt$init)

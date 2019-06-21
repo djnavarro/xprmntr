@@ -4,12 +4,12 @@
 \alias{jspsych_init}
 \title{Options on initialisation}
 \usage{
-jspsych_init(xpt, options = list())
+jspsych_init(xpt, ...)
 }
 \arguments{
 \item{xpt}{the experiment}
 
-\item{options}{list of options}
+\item{...}{arguments passed to init}
 }
 \description{
 Options on initialisation

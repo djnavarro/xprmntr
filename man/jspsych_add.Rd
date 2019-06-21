@@ -4,16 +4,14 @@
 \alias{jspsych_add}
 \title{Add trial that shows an image and respond with keyboard}
 \usage{
-jspsych_add(xpt, type, options = list())
+jspsych_add(xpt, type, ...)
 }
 \arguments{
 \item{xpt}{the experiment object}
 
-\item{stimulus}{path to an image file}
+\item{type}{the type of trial}
 
-\item{choices}{numeric codes for allowed responses}
-
-\item{prompt}{text of the response prompt}
+\item{...}{arguments passed to the trial plugin}
 }
 \description{
 Add trial that shows an image and respond with keyboard
