@@ -15,7 +15,8 @@ my_opts <- function(ind) {
 xpt <- jspsych_create() %>%
   jspsych_add(type = "image-keyboard-response", options = my_opts(1)) %>%
   jspsych_add(type = "image-keyboard-response", options = my_opts(2)) %>%
-  jspsych_add(type = "image-keyboard-response", options = my_opts(3))
+  jspsych_add(type = "image-keyboard-response", options = my_opts(3)) %>%
+  jspsych_init(options = list(default_iti = 250))
 
 # write it to an html file
 jspsych_write(xpt, "~/Desktop/expelllr")

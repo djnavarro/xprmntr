@@ -2,10 +2,15 @@
 % Please edit documentation in R/setup.R
 \name{jspsych_init}
 \alias{jspsych_init}
-\title{Construct a call to jsPsych.init}
+\title{Options on initialisation}
 \usage{
-jspsych_init(xpt)
+jspsych_init(xpt, options = list())
+}
+\arguments{
+\item{xpt}{the experiment}
+
+\item{options}{list of options}
 }
 \description{
-Construct a call to jsPsych.init
+Options on initialisation
 }

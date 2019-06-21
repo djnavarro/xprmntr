@@ -9,13 +9,14 @@ jspsych_create <- function() {
   xpt$init <- list()
   return(xpt)
 }
+
 #' Add trial that shows an image and respond with keyboard
 #' @param xpt the experiment object
 #' @param stimulus path to an image file
 #' @param choices numeric codes for allowed responses
 #' @param prompt text of the response prompt
 #' @export
-jspsych_add <-function(xpt, type, options = list()) {
+jspsych_add <- function(xpt, type, options = list()) {
 
   # append the trial information to the list
   trial_number <- length(xpt$trial) + 1
@@ -32,15 +33,17 @@ jspsych_add <-function(xpt, type, options = list()) {
   return(xpt)
 }
 
-#' Construct a call to jsPsych.init
+#' Options on initialisation
 #'
-#'
-jspsych_init <- function(xpt) {
+#' @param xpt the experiment
+#' @param options list of options
+#' @export
+jspsych_init <- function(xpt, options = list()) {
 
+  xpt$init <- options
+  return(xpt)
 
 }
-
-
 
 #' Convert the experiment object to HTML file
 #'
@@ -54,15 +57,11 @@ jspsych_write <- function(xpt, path) {
     zipfile = system.file("extdata", "jspsych-6.0.5.zip", package = "xprmntr"),
     exdir = path)
 
-  # write the trial list to a js file
-  tl <- jspsychify_timeline(xpt$trial)
-
-  tl <- c(tl, "jsPsych.init({
-    timeline: [trial_1, trial_2, trial_3],
-    default_iti: 250
-  });")
-
-  writeLines(tl, file.path(path, "experiment.js"))
+  # write the experiment to a js string
+  task <- c(list(timeline = xpt$trial), xpt$init)
+  json <- jsonlite::toJSON(task, auto_unbox = TRUE, pretty = TRUE)
+  expt <- paste("jsPsych.init(", json, ");", sep = "\n")
+  writeLines(expt, file.path(path, "experiment.js"))
 
   # header info for html file
   html <- c(
@@ -83,25 +82,5 @@ jspsych_write <- function(xpt, path) {
 
   # invisibly return the input
   return(invisible(xpt))
-}
-
-
-# create the timeline string
-jspsychify_timeline <- function(timeline) {
-
-  ntr <- length(timeline)
-  tl_str <- character()
-  for(tr in 1:ntr) {
-    tl_str <- c(tl_str, '', paste0(
-        'var trial_', tr, ' = ',
-        jspsychify_trial(xpt$trial[[tr]]) , ";")
-    )
-  }
-  return(tl_str)
-}
-
-# convert a single trial to an appropriate json string
-jspsychify_trial <- function(trial) {
-  jsonlite::toJSON(trial, auto_unbox = TRUE)
 }
 

@@ -4,7 +4,7 @@
 \alias{jspsych_write}
 \title{Convert the experiment object to HTML file}
 \usage{
-jspsych_write(xpt, file)
+jspsych_write(xpt, path)
 }
 \arguments{
 \item{xpt}{the experiment object}
