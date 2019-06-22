@@ -51,7 +51,6 @@ xpt <- jspsych_create(files = img) %>%
     prompt = "How much did you enjoy this?", 
     labels = c("a lot", "not much", "not at all"), required = TRUE))) %>%
   jspsych_init(default_iti = 250)
-
 ```
 
 Write self-contained experiment to a directory:

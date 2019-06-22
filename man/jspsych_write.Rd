@@ -8,6 +8,8 @@ jspsych_write(xpt, path)
 }
 \arguments{
 \item{xpt}{the experiment object}
+
+\item{path}{where to write the experiment}
 }
 \description{
 Convert the experiment object to HTML file
