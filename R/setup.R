@@ -21,6 +21,15 @@ res <- function(file) {
   file.path("resources", file)
 }
 
+#' Specify js code directly
+#'
+#' @param x the code as a string
+#' @export
+verbatim <- function(x) {
+  class(x) <- "json"
+  x
+}
+
 #' Run a jspsych experiment
 #'
 #' @param path path
@@ -107,7 +116,7 @@ jspsych_write <- function(xpt, path) {
 
   # write the experiment to a js string
   task <- c(list(timeline = xpt$trial), xpt$init)
-  json <- jsonlite::toJSON(task, auto_unbox = TRUE, pretty = TRUE)
+  json <- jsonlite::toJSON(task, auto_unbox = TRUE, pretty = TRUE, json_verbatim = TRUE)
   expt <- paste("jsPsych.init(", json, ");", sep = "\n")
   writeLines(expt, file.path(path, "experiment", "experiment.js"))
 

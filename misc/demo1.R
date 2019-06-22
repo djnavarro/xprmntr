@@ -16,8 +16,9 @@ xpt <- jspsych_create(files = img) %>%
   jspsych_add(type = "survey-likert", questions = list(list(
     prompt = "How much did you enjoy this?",
     labels = c("a lot", "not much", "not at all"), required = TRUE))) %>%
-  jspsych_init(default_iti = 250,
-               on_finish = "function () {xprmntr.savelocally('~/Desktop/blah.csv', jsPsych.data.get().csv())}")
+  jspsych_init(
+    default_iti = 250,
+    on_finish = verbatim("function(){xprmntr.savelocally('~/Desktop/blah.csv', jsPsych.data.get().csv())}"))
 
 # write it to an html file
 jspsych_write(xpt, "~/Desktop/expt")
