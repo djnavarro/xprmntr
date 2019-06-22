@@ -27,12 +27,17 @@ res <- function(file) {
 #' @export
 run <- function(path = ".") {
 
-  api <- readLines(file.path(path, "experiment", "xprmntr", "plumberapi.R"))
-  api <- gsub("EXPERIMENTHOME", file.path(path, "experiment"), api)
-  tmp <- file.path(tempdir(), "api.R")
-  writeLines(api, tmp)
-  pr <- plumber::plumb(tmp)
-  return(pr)
+  pr <- plumber::plumber$new()
+
+  static_site <- file.path(path, "experiment")
+  static_router <- plumber::PlumberStatic$new(static_site)
+
+  pr$mount("/", static_router)
+  pr$handle("POST", "/submit", function(req, res){
+    print(req$postBody)
+  })
+
+  pr$run(swagger = FALSE)
 }
 
 #' Add trial that shows an image and respond with keyboard
@@ -98,8 +103,6 @@ jspsych_write <- function(xpt, path) {
 
   # copy the xprmntr files
   file.copy(system.file("extdata", "xprmntr.js", package = "xprmntr"),
-            file.path(path, "experiment", "xprmntr"))
-  file.copy(system.file("extdata", "plumberapi.R", package = "xprmntr"),
             file.path(path, "experiment", "xprmntr"))
 
   # write the experiment to a js string
