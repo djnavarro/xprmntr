@@ -5,7 +5,9 @@
  **/
 
 var xprmntr = {};
-xprmntr.savelocally = function(file, data) {
+xprmntr.localsave = function() {
+  var data = jsPsych.data.get().csv();
+  var file = "xprmntr_local_name";
   var xhr = new XMLHttpRequest();
   xhr.open('POST', 'submit');
   xhr.setRequestHeader('Content-Type', 'application/json');
