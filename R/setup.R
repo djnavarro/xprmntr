@@ -17,7 +17,7 @@ jspsych_create <- function(files) {
 #'
 #' @param file path
 #' @export
-res <- function(file) {
+resource <- function(file) {
   file.path("resources", file)
 }
 
@@ -25,7 +25,7 @@ res <- function(file) {
 #'
 #' @param x the code as a string
 #' @export
-verbatim <- function(x) {
+unquote <- function(x) {
   class(x) <- "json"
   x
 }
