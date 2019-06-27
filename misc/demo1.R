@@ -33,7 +33,7 @@ xpt <- jspsych_create(files = img) %>%
     ) %>%
   jspsych_init(
     default_iti = 250,
-    on_finish = unquote("xprmntr.localsave"))
+    on_finish = unquote("xprmntr.save_locally"))
 
 # write it to an html file
 jspsych_write(xpt, "~/Desktop/expt")
