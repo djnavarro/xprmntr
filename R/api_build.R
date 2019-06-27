@@ -6,7 +6,7 @@
 #'
 #' @param path path
 #' @export
-run <- function(path = ".") {
+run_locally <- function(path = ".") {
 
   pr <- plumber::plumber$new()
 
