@@ -23,9 +23,9 @@ jspsych_write <- function(xpt, path) {
   file.copy(xpt$files, file.path(path, "experiment", "resources"))
 
   # copy the relevant jspsych files
-  file.copy(system.file("extdata", "jspsych-6.0.5", xpt$head$script, package = "xprmntr"),
+  file.copy(system.file("extdata", "jspsych-6.0.5", xpt$script, package = "xprmntr"),
             file.path(path, "experiment", "jspsych"))
-  file.copy(system.file("extdata", "jspsych-6.0.5", xpt$head$style, package = "xprmntr"),
+  file.copy(system.file("extdata", "jspsych-6.0.5", xpt$style, package = "xprmntr"),
             file.path(path, "experiment", "jspsych"))
 
   # copy the xprmntr files
@@ -43,10 +43,10 @@ jspsych_write <- function(xpt, path) {
     '<!DOCTYPE html>',
     '  <html lang="en-us">',
     '  <head>',
-    paste0('    <script src = "jspsych/', xpt$head$script, '"></script>'),
+    paste0('    <script src = "jspsych/', xpt$script, '"></script>'),
     paste0('    <script src = "xprmntr/xprmntr.js"></script>'),
     paste0('    <script src = "experiment.js"></script>'),
-    paste0('    <link rel="stylesheet" href="jspsych/', xpt$head$style, '">'),
+    paste0('    <link rel="stylesheet" href="jspsych/', xpt$style, '">'),
     '  </head>',
     '  <body>',
     '  </body>',

@@ -7,9 +7,8 @@
 #' @export
 jspsych_create <- function(files) {
   xpt <- list()
-  xpt$head <- list()
-  xpt$head$script <- "jspsych.js"
-  xpt$head$style <- "jspsych.css"
+  xpt$script <- "jspsych.js"
+  xpt$style <- "jspsych.css"
   xpt$trial <- list()
   xpt$init <- list()
   xpt$files <- files
@@ -32,8 +31,8 @@ jspsych_add <- function(xpt, type, ...) {
   plugin <- paste0("jspsych-", type, ".js")
 
   # make sure the plugin file is listed
-  if(!plugin %in% xpt$head$script) {
-    xpt$head$script <- c(xpt$head$script, plugin)
+  if(!plugin %in% xpt$script) {
+    xpt$script <- c(xpt$script, plugin)
   }
 
   return(xpt)
