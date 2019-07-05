@@ -5,6 +5,10 @@
 
 <!-- badges: start -->
 
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/xprmntr)](https://cran.r-project.org/package=xprmntr)
 <!-- badges: end -->
 
 The goal of `xprmntr` is to let users build behavioural experiments in R
@@ -34,18 +38,18 @@ img <- file.path(system.file("extdata", package = "rainbowr"), img)
 
 # create an experiment with three trials
 xpt <- jspsych_create(files = img) %>%
-  jspsych_add(type = "image-keyboard-response", stimulus = res("rainbow.svg"),
+  jspsych_add(type = "image-keyboard-response", stimulus = resource("rainbow.svg"),
               prompt = "Do you like this flag? (Y or N)", choices = c(89, 78)) %>%
-  jspsych_add(type = "image-keyboard-response", stimulus = res("transgender.svg"),
+  jspsych_add(type = "image-keyboard-response", stimulus = resource("transgender.svg"),
               prompt = "Do you like this flag? (Y or N)", choices = c(89, 78)) %>%
-  jspsych_add(type = "image-keyboard-response", stimulus = res("bisexual.svg"),
+  jspsych_add(type = "image-keyboard-response", stimulus = resource("bisexual.svg"),
               prompt = "Do you like this flag? (Y or N)", choices = c(89, 78)) %>%
   jspsych_add(type = "survey-likert", questions = list(list(
     prompt = "How much did you enjoy this?",
     labels = c("a lot", "not much", "not at all"), required = TRUE))) %>%
   jspsych_init(
     default_iti = 250,
-    on_finish = verbatim("function(){xprmntr.savelocally('~/Desktop/blah.csv', jsPsych.data.get().csv())}"))
+    on_finish = unquote("xprmntr.save_locally"))
 ```
 
 Write self-contained experiment to a directory:
@@ -57,5 +61,5 @@ jspsych_write(xpt, "~/Desktop/expt")
 To run the experiment:
 
 ``` r
-xprmntr::run("~/Desktop/expt")
+xprmntr::run_locally("~/Desktop/expt")
 ```

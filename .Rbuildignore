@@ -3,3 +3,6 @@
 ^LICENSE\.md$
 ^README\.Rmd$
 ^misc$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
