@@ -1,7 +1,6 @@
 # file: api_build.R
 # author: Danielle Navarro
 
-
 #' Run a jspsych experiment
 #'
 #' @param path path
