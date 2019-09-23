@@ -17,4 +17,5 @@ RoxygenNote: 6.1.1
 Imports: 
     jsonlite,
     plumber,
-    readr
+    readr,
+    purrr

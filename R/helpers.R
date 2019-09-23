@@ -7,6 +7,7 @@
 #' @param file path
 #' @export
 resource <- function(file) {
+  #purrr::map_chr(file, function(.x) {attr(.x, "resource")  <- TRUE; .x}, )
   file.path("resources", file)
 }
 

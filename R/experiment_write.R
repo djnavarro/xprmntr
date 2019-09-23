@@ -1,26 +1,28 @@
 # file: experiment_write.R
 # author: Danielle Navarro
 
-#' Options on initialisation
+
+#' Make the experiment
 #'
-#' @param timeline a timeline object
-#' @param ... arguments passed to init
-#' @export
-jspsych_init <- function(timeline, ...) {
-
-  # an experiment is a timeline plus settings
-  xpt <- timeline
-  xpt$init <- list(...)
-  return(xpt)
-
-}
-
-#' Convert the experiment object to HTML file
+#' @param timeline tl
+#' @param path  p
+#' @param resources r
+#' @param ... pass to init
 #'
-#' @param xpt the experiment object
-#' @param path where to write the experiment
 #' @export
-jspsych_write <- function(xpt, path) {
+make_experiment <- function(timeline, path, resources, ...) {
+
+  # set up
+  init <- list(...)
+  scripts <- "jspsych.js"
+  stylesheets <- "jspsych.css"
+
+  # use the timeline to discover plugins
+  flattl <- unlist(timeline)
+  plugins <- flattl[grep(pattern = "type$", x = names(flattl))]
+  plugins <- unique(unname(plugins))
+  plugins <- paste0("jspsych-", plugins, ".js")
+  scripts <- c(scripts, plugins)
 
   # create tree
   dir.create(path)
@@ -32,18 +34,20 @@ jspsych_write <- function(xpt, path) {
 
   # copy resource files
   file.copy(
-    from = xpt$resources,
-    to = file.path(path, "experiment", "resources")
+     from = list.files(resources, full.names = TRUE),
+     to = file.path(path, "experiment", "resources"),
+     recursive = TRUE
   )
 
   # copy jspsych files
   file.copy(
     from = system.file(
-      "extdata", "jspsych-6.0.5", c(xpt$scripts, xpt$stylesheets),
+      "extdata", "jspsych-6.0.5", c(scripts, stylesheets),
       package = "xprmntr"
     ),
     to = file.path(path, "experiment", "jspsych")
   )
+
   # copy xprmntr files
   file.copy(
     from = system.file("extdata", "xprmntr.js", package = "xprmntr"),
@@ -51,8 +55,8 @@ jspsych_write <- function(xpt, path) {
   )
 
   # write the experiment to a js string
-  task <- c(list(timeline = xpt$trials), xpt$init)
-  json <- jsonlite::toJSON(task, auto_unbox = TRUE, pretty = TRUE, json_verbatim = TRUE)
+  task <- c(list(timeline = timeline), init)
+  json <- jsonlite::toJSON(task, pretty = TRUE, json_verbatim = TRUE)
   expt <- paste("jsPsych.init(", json, ");", sep = "\n")
   writeLines(expt, file.path(path, "experiment", "experiment.js"))
 
@@ -61,10 +65,10 @@ jspsych_write <- function(xpt, path) {
     '<!DOCTYPE html>',
     '  <html lang="en-us">',
     '  <head>',
-    paste0('    <script src = "jspsych/', xpt$scripts, '"></script>'),
+    paste0('    <script src = "jspsych/', scripts, '"></script>'),
     paste0('    <script src = "xprmntr/xprmntr.js"></script>'),
     paste0('    <script src = "experiment.js"></script>'),
-    paste0('    <link rel="stylesheet" href="jspsych/', xpt$stylesheets, '">'),
+    paste0('    <link rel="stylesheet" href="jspsych/', stylesheets, '">'),
     '  </head>',
     '  <body>',
     '  </body>',
@@ -74,6 +78,6 @@ jspsych_write <- function(xpt, path) {
   # write the file
   writeLines(html, file.path(path, "experiment", "index.html"))
 
-  # invisibly return the input
-  return(invisible(xpt))
+  return(invisible(NULL))
+
 }
