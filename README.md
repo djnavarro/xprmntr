@@ -11,9 +11,10 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 status](https://www.r-pkg.org/badges/version/xprmntr)](https://cran.r-project.org/package=xprmntr)
 <!-- badges: end -->
 
-The goal of `xprmntr` is to let users build behavioural experiments in R
-run through the browser. Initially, the intention is to provide wrappers
-to the [jspsych](https://www.jspsych.org/) javascript library.
+The goal of `xprmntr` (pronounced: “experimenter”) is to let users build
+behavioural experiments in R run through the browser. Initially, the
+intention is to provide wrappers to the
+[jspsych](https://www.jspsych.org/) javascript library.
 
 ## Installation
 
@@ -36,20 +37,29 @@ library(magrittr)
 img <- c("rainbow.svg", "transgender.svg", "bisexual.svg")
 img <- file.path(system.file("extdata", package = "rainbowr"), img)
 
-# create an experiment with three trials
-xpt <- jspsych_create(files = img) %>%
-  jspsych_add(type = "image-keyboard-response", stimulus = resource("rainbow.svg"),
-              prompt = "Do you like this flag? (Y or N)", choices = c(89, 78)) %>%
-  jspsych_add(type = "image-keyboard-response", stimulus = resource("transgender.svg"),
-              prompt = "Do you like this flag? (Y or N)", choices = c(89, 78)) %>%
-  jspsych_add(type = "image-keyboard-response", stimulus = resource("bisexual.svg"),
-              prompt = "Do you like this flag? (Y or N)", choices = c(89, 78)) %>%
-  jspsych_add(type = "survey-likert", questions = list(list(
-    prompt = "How much did you enjoy this?",
-    labels = c("a lot", "not much", "not at all"), required = TRUE))) %>%
-  jspsych_init(
-    default_iti = 250,
-    on_finish = unquote("xprmntr.save_locally"))
+# create an experiment
+tl <- tl_new(resources = img) %>%
+  tl_add(
+    type = "image-keyboard-response", 
+    stimulus = resource(img),
+    prompt = "Do you like this flag? (Y or N)", 
+    choices = c(89, 78)
+  ) %>%
+  tl_add(
+    type = "survey-likert", 
+    questions = list(list(
+      prompt = "How much did you enjoy this?",
+      labels = c("a lot", "not much", "not at all"), 
+      required = TRUE
+    ))
+  ) 
+
+# initialise the jspsych experiment
+xpt <- jspsych_init(
+  timeline = tl,
+  default_iti = 250,
+  on_finish = unquote("xprmntr.save_locally")
+)
 ```
 
 Write self-contained experiment to a directory:

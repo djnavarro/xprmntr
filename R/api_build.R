@@ -18,12 +18,21 @@ run_locally <- function(path = ".") {
 
     dat <- jsonlite::fromJSON(req$postBody)
     dat <- readr::read_csv(dat$filedata)
+
     tsp <- get_timestamp()
-    file_id <- paste("data", get_timestamp(), get_alphanumeric(10), sep = "_")
+    file_id <- paste(
+      "data", get_timestamp(), get_alphanumeric(10), sep = "_"
+    )
     dat$file_id <- file_id
     dat <- dat[, c(ncol(dat), 1:ncol(dat)-1), drop = FALSE]
     readr::write_csv(dat, file.path(data_folder, paste0(file_id, ".csv")))
   })
 
+  pr$registerHook("exit", function(){
+    print("Done!")
+  })
+
+  #browseURL("http://localhost:8000")
   pr$run(swagger = FALSE)
+
 }

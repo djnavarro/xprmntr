@@ -1,53 +1,61 @@
 # file: timeline_build.R
 # author: Danielle Navarro
 
-#' Initialise an experiment
+#' Initialise a timeline
 #'
-#' @param files character listing files to include
+#' @param scripts character vector listing user files to include
+#' @param stylesheets character vector listing jspsych files to include
+#' @param resources dsgdsf
+#' @details If no arguments are specified, the resources field is empty,
+#' and the jspsych field contains the core jspsych library and css files
 #' @export
-jspsych_create <- function(files) {
-  xpt <- list()
-  xpt$script <- "jspsych.js"
-  xpt$style <- "jspsych.css"
-  xpt$trial <- list()
-  xpt$init <- list()
-  xpt$files <- files
-  return(xpt)
+tl_new <- function(
+  scripts = "jspsych.js",
+  stylesheets = "jspsych.css",
+  resources = character()
+) {
+  new_timeline(
+    scripts = scripts,
+    stylesheets = stylesheets,
+    resources = resources
+  )
 }
 
+# constructor function
+new_timeline <- function(
+  trials = list(),
+  scripts = "jspsych.js",
+  stylesheets = "jspsych.css",
+  resources = character()
+){
+  list(
+    trials = trials,
+    scripts = scripts,
+    stylesheets = stylesheets,
+    resources = resources
+  )
+}
 
-#' Add trial that shows an image and respond with keyboard
-#' @param xpt the experiment object
-#' @param type the type of trial
+#' Adds an arbitrary trial block to the timeline
+#' @param timeline the timeline object
+#' @param type the type of trial block
 #' @param ... arguments passed to the trial plugin
 #' @export
-jspsych_add <- function(xpt, type, ...) {
+tl_add <- function(timeline, type, ...) {
 
-  # append the trial information to the list
-  trial_number <- length(xpt$trial) + 1
-  xpt$trial[[trial_number]] <- c(list(type = type), list(...))
+  # make an addition to the timeline
+  ind <- length(timeline$trials) + 1
+  timeline$trials[[ind]] <- c(list(type = type), list(...))
 
   # specify path to plugin file
   plugin <- paste0("jspsych-", type, ".js")
 
   # make sure the plugin file is listed
-  if(!plugin %in% xpt$script) {
-    xpt$script <- c(xpt$script, plugin)
+  if(!plugin %in% timeline$scripts) {
+    timeline$scripts <- c(timeline$scripts, plugin)
   }
-
-  return(xpt)
+  return(timeline)
 }
 
 
-#' Options on initialisation
-#'
-#' @param xpt the experiment
-#' @param ... arguments passed to init
-#' @export
-jspsych_init <- function(xpt, ...) {
-
-  xpt$init <- list(...)
-  return(xpt)
-
-}
 

@@ -20,12 +20,12 @@ unquote <- function(x) {
   x
 }
 
-
 get_timestamp <- function() {
   tsp <- as.character(Sys.time())
   tsp <- gsub("[ :]", "-", tsp)
   return(tsp)
 }
+
 
 get_alphanumeric <- function(n = 5) {
   x <- c("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r",
