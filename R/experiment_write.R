@@ -42,7 +42,7 @@ make_experiment <- function(timeline, path, resources, ...) {
   # copy jspsych files
   file.copy(
     from = system.file(
-      "extdata", "jspsych-6.0.5", c(scripts, stylesheets),
+      "extdata", "jsPsych-6.1.0", c(scripts, stylesheets),
       package = "xprmntr"
     ),
     to = file.path(path, "experiment", "jspsych")

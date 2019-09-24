@@ -2,7 +2,7 @@ library(xprmntr)
 library(magrittr)
 
 
-resources <- file.path(system.file("extdata", package = "rainbowr"))
+resources <- file.path(system.file("extdata", "img", package = "xprmntr"))
 images <- c("bisexual.svg", "trangender.svg", "rainbow.svg")
 
 fixation <- trial(
@@ -14,13 +14,14 @@ fixation <- trial(
 
 test <- trial(
   type = "image-keyboard-response",
-  stimulus = use_variable('stimulus'),
+  stimulus = resource(images[1]),
   prompt = "Do you like this flag? ('y' or 'n')",
   choices = c('y', 'n')
 )
 
-test_procedure <- timeline(fixation, test) %>%
-  with_variable(name = "stimulus", values = resource(images))
+test_procedure <- timeline(fixation, test)
+#%>%
+#  with_variable(name = "stimulus", values = resource(images))
 # %>% with_parameters(randomize_order = TRUE, repetitions = 2)
 
 
