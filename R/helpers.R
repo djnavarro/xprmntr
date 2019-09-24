@@ -20,10 +20,31 @@ NULL
 #'
 #' @param x the code as a string
 #' @export
-unquote <- function(x) {
+code <- function(x) {
   class(x) <- "json"
   x
 }
+
+# # returns a list of expressions
+capture_dots <- function(...) {
+  as.list(substitute(list(...)))[-1L]
+}
+
+
+#' Specify js string concatenation directly
+#' @param type the type of trial block
+#' @param ... arguments passed to the trial plugin
+#' @export
+string <- function(...) {
+  s <- list(...)
+  string_quote <- function(c) {
+    if(is(c,"json")) { return(c) }
+    return(paste0('"',c,'"'))
+  }
+  s <- paste(lapply(s, string_quote), collapse = " + ")
+  code(s)
+}
+
 
 get_timestamp <- function() {
   tsp <- as.character(Sys.time())

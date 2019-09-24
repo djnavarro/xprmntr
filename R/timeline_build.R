@@ -25,23 +25,31 @@ trial <- function(type, ...) {
 #'
 use_variable <- function(name) {
   str <- paste0("jsPsych.timelineVariable('",name, "')")
-  return(unquote(str))
+  return(code(str))
 }
 
 #' Attach a timeline variable to timeline object
 #'
 #' @param timeline the timeline object
-#' @param name name of the variable
-#' @param values possible values for the variable
+#' @param ... name value pairs
 #'
 #' @export
-with_variable <- function(timeline, name, values) {
-  #names(values) <- rep(name, length(values))
-  #variable <- as.list(values)
-  variable <- purrr::map(
-    .x = values,
-    .f = function(x) {l <- list(x); names(l) <- name; l}
-  )
-  timeline[["timeline_variables"]] <- variable
+with_variables <- function(timeline, ...) {
+  vars <- list(...)
+  vars <- purrr::transpose(vars)
+  timeline[["timeline_variables"]] <- vars
   return(timeline)
 }
+
+#' Attach a timeline variable to timeline object
+#'
+#' @param timeline the timeline object
+#' @param ... name value pairs
+#'
+#' @export
+with_parameters <- function(timeline, ...) {
+  timeline <- c(timeline, ...)
+  return(timeline)
+}
+
+

@@ -62,7 +62,7 @@ make_experiment <- function(timeline, path, resources, ...) {
   )
 
   # write the initialisation to a js string
-  task <- c(list(timeline = unquote("[timeline]")), init)
+  task <- c(list(timeline = code("[timeline]")), init)
   init_json <- paste(
     "jsPsych.init(",
     jsonlite::toJSON(task, pretty = TRUE, json_verbatim = TRUE),
