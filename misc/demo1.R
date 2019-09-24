@@ -1,9 +1,7 @@
 library(xprmntr)
-library(magrittr)
-
 
 resources <- file.path(system.file("extdata", "img", package = "xprmntr"))
-images <- c("bisexual.svg", "trangender.svg", "rainbow.svg")
+images <- c("bisexual.svg", "transgender.svg", "rainbow.svg")
 
 fixation <- trial(
   type = "html-keyboard-response",
@@ -14,15 +12,14 @@ fixation <- trial(
 
 test <- trial(
   type = "image-keyboard-response",
-  stimulus = resource(images[1]),
+  stimulus = use_variable("stimulus"),
   prompt = "Do you like this flag? ('y' or 'n')",
   choices = c('y', 'n')
 )
 
-test_procedure <- timeline(fixation, test)
-#%>%
-#  with_variable(name = "stimulus", values = resource(images))
-# %>% with_parameters(randomize_order = TRUE, repetitions = 2)
+test_procedure <- timeline(fixation, test) %>%
+  with_variable(name = "stimulus", values = resource(images)) #%>%
+  #with_parameters(randomize_order = TRUE, repetitions = 2)
 
 
 # make experiment handles both jsPsych.init and write

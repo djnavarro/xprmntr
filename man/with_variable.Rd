@@ -2,13 +2,17 @@
 % Please edit documentation in R/timeline_build.R
 \name{with_variable}
 \alias{with_variable}
-\title{Title}
+\title{Attach a timeline variable to timeline object}
 \usage{
 with_variable(timeline, name, values)
 }
 \arguments{
-\item{values}{}
+\item{timeline}{the timeline object}
+
+\item{name}{name of the variable}
+
+\item{values}{possible values for the variable}
 }
 \description{
-Title
+Attach a timeline variable to timeline object
 }

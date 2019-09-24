@@ -54,11 +54,26 @@ make_experiment <- function(timeline, path, resources, ...) {
     to = file.path(path, "experiment", "xprmntr")
   )
 
-  # write the experiment to a js string
-  task <- c(list(timeline = timeline), init)
-  json <- jsonlite::toJSON(task, pretty = TRUE, json_verbatim = TRUE)
-  expt <- paste("jsPsych.init(", json, ");", sep = "\n")
-  writeLines(expt, file.path(path, "experiment", "experiment.js"))
+  # write the timeline to a js string
+  timeline_json <- paste(
+    "var timeline = ",
+    jsonlite::toJSON(timeline, pretty = TRUE, json_verbatim = TRUE),
+    ";\n", sep = ""
+  )
+
+  # write the initialisation to a js string
+  task <- c(list(timeline = unquote("[timeline]")), init)
+  init_json <- paste(
+    "jsPsych.init(",
+    jsonlite::toJSON(task, pretty = TRUE, json_verbatim = TRUE),
+    ");", sep = "\n"
+  )
+
+  # write both to file
+  writeLines(
+    text = c(timeline_json, init_json),
+    con = file.path(path, "experiment", "experiment.js")
+  )
 
   # header info for html file
   html <- c(

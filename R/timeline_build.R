@@ -4,7 +4,9 @@
 #' Initialise a timeline
 #' @export
 timeline <- function(...){
-  list(timeline = list(...))
+  tl <- list(timeline = list(...))
+  class(tl) <- c("timeline", "list")
+  tl
 }
 
 #' Adds an arbitrary trial block to the timeline
@@ -15,9 +17,9 @@ trial <- function(type, ...) {
   return(c(list(type = type), list(...)))
 }
 
-#' Title
+#' Insert a timeline variable
 #'
-#' @param name
+#' @param name name of the variable to insert
 #'
 #' @export
 #'
@@ -26,11 +28,11 @@ use_variable <- function(name) {
   return(unquote(str))
 }
 
-#' Title
+#' Attach a timeline variable to timeline object
 #'
-#' @param timeline
-#' @param name
-#' @param values
+#' @param timeline the timeline object
+#' @param name name of the variable
+#' @param values possible values for the variable
 #'
 #' @export
 with_variable <- function(timeline, name, values) {

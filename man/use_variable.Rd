@@ -2,13 +2,13 @@
 % Please edit documentation in R/timeline_build.R
 \name{use_variable}
 \alias{use_variable}
-\title{Title}
+\title{Insert a timeline variable}
 \usage{
 use_variable(name)
 }
 \arguments{
-\item{name}{}
+\item{name}{name of the variable to insert}
 }
 \description{
-Title
+Insert a timeline variable
 }

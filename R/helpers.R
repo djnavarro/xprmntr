@@ -11,6 +11,10 @@ resource <- function(file) {
   file.path("resources", file)
 }
 
+#' @importFrom magrittr %>%
+#' @export
+NULL
+
 
 #' Specify js code directly
 #'
