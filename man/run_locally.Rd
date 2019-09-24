@@ -4,7 +4,7 @@
 \alias{run_locally}
 \title{Run a jspsych experiment}
 \usage{
-run_locally(path = ".")
+run_locally(path = ".", port = 8000)
 }
 \arguments{
 \item{path}{path}

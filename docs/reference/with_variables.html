@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • xprmntr</title>
+<title>Attach a timeline variable to timeline object — with_variables • xprmntr</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,7 +32,10 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Attach a timeline variable to timeline object — with_variables" />
+
+<meta property="og:description" content="Attach a timeline variable to timeline object" />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -50,7 +53,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -98,96 +101,42 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Attach a timeline variable to timeline object</h1>
+    <small class="dont-index">Source: <a href='https://github.com/djnavarro/xprmntr/blob/master/R/timeline_build.R'><code>R/timeline_build.R</code></a></small>
+    <div class="hidden name"><code>with_variables.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    
+    <p>Attach a timeline variable to timeline object</p>
+    
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
-
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="code.html">code()</a></code> </p>
-        </td>
-        <td><p>Specify js code directly</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="make_experiment.html">make_experiment()</a></code> </p>
-        </td>
-        <td><p>Make the experiment</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="resource.html">resource()</a></code> </p>
-        </td>
-        <td><p>Refer to a resource file</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="run_locally.html">run_locally()</a></code> </p>
-        </td>
-        <td><p>Run a jspsych experiment</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="string.html">string()</a></code> </p>
-        </td>
-        <td><p>Specify js string concatenation directly</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="timeline.html">timeline()</a></code> </p>
-        </td>
-        <td><p>Initialise a timeline</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="trial.html">trial()</a></code> </p>
-        </td>
-        <td><p>Adds an arbitrary trial block to the timeline</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="use_variable.html">use_variable()</a></code> </p>
-        </td>
-        <td><p>Insert a timeline variable</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="with_parameters.html">with_parameters()</a></code> </p>
-        </td>
-        <td><p>Attach a timeline variable to timeline object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="with_variables.html">with_variables()</a></code> </p>
-        </td>
-        <td><p>Attach a timeline variable to timeline object</p></td>
-      </tr>
-    </tbody>
+    <pre class="usage"><span class='fu'>with_variables</span>(<span class='no'>timeline</span>, <span class='no'>...</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>timeline</th>
+      <td><p>the timeline object</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>name value pairs</p></td>
+    </tr>
     </table>
-  </div>
+    
 
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
-    </ul>
+      <li><a href="#arguments">Arguments</a></li>
+                </ul>
+
   </div>
 </div>
 
