@@ -5,7 +5,7 @@
 #'
 #' @param path path
 #' @export
-run_locally <- function(path = ".") {
+run_locally <- function(path = ".", port = 8000) {
 
   pr <- plumber::plumber$new()
 
@@ -32,7 +32,8 @@ run_locally <- function(path = ".") {
     print("Done!")
   })
 
-  #browseURL("http://localhost:8000")
-  pr$run(swagger = FALSE)
+  url <- paste0("http://localhost:", port)
+  browseURL(url)
+  pr$run(swagger = FALSE, port = port)
 
 }
