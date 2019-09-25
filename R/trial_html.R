@@ -1,12 +1,14 @@
 
-#' Create an HTML stimulus trial with keyboard response
+#' HTML stimulus, keyboard response
 #'
-#' @param stimulus the HTML stimulus
-#' @param choices character vector specifying allowed response keys
-#' @param prompt the prompt to be displayed with the stimulus
-#' @param stimulus_duration how long the stimulus is displayed
-#' @param trial_duration how long the trial lasts
-#' @param response_ends_trial default = TRUE
+#' @param stimulus HTML stimulus
+#'
+#' @param choices Character vector specifying the allowed response keys (default = any_key())
+#'
+#' @param prompt The prompt to be displayed with the stimulus (can include HTML markup)
+#' @param stimulus_duration How long to display stimulus in milliseconds? (default is to remain until response)
+#' @param trial_duration How long to wait for response in milliseconds? (default is to wait indefinitely)
+#' @param response_ends_trial Does the trial end with response (default = TRUE) or continue until trial duration reached?
 #'
 #' @export
 html_keyboard_response <- function(
@@ -30,29 +32,31 @@ html_keyboard_response <- function(
 
 
 
-#' Create an HTML stimulus trial with button press response
+#' HTML stimulus, button response
 #'
-#' @param stimulus the HTML stimulus
-#' @param choices character vector specifying labels
-#' @param prompt the prompt to be displayed with the stimulus
-#' @param stimulus_duration how long the stimulus is displayed
-#' @param trial_duration how long the trial lasts
-#' @param response_ends_trial default = TRUE
-#' @param button_html HTML specifying the buttons (defaults to jsPsych default)
-#' @param margin_vertical vertical margin of the buttons
-#' @param margin_horizontal horizontal margin of the buttons
+#' @param stimulus HTML stimulus
+#'
+#' @param choices Character vector with labels for the buttons
+#' @param button_html HTML templay specifying the buttons (defaults to jsPsych default)
+#' @param margin_vertical Vertical margin of the buttons (default "0px")
+#' @param margin_horizontal Horizontal margin of the buttons (default "8px")
+#'
+#' @param prompt The prompt to be displayed with the stimulus (can include HTML markup)
+#' @param stimulus_duration How long to display stimulus in milliseconds? (default is to remain until response)
+#' @param trial_duration How long to wait for response in milliseconds? (default is to wait indefinitely)
+#' @param response_ends_trial Does the trial end with response (default = TRUE) or continue until trial duration reached?
 #'
 #' @export
 html_button_response <- function(
   stimulus,
   choices,
+  button_html = NULL,
   prompt = NULL,
   stimulus_duration = NULL,
   trial_duration = NULL,
-  response_ends_trial = TRUE,
-  button_html = NULL,
   margin_vertical = "0px",
-  margin_horizontal = "8px"
+  margin_horizontal = "8px",
+  response_ends_trial = TRUE
 ) {
   drop_nulls(
     trial(
@@ -69,26 +73,25 @@ html_button_response <- function(
 }
 
 
-#' Create an HTML stimulus trial with slider response
+#' HTML stimulus, slider response
 #'
-#' @param stimulus the HTML stimulus
-#' @param labels labels to be spaced equally along slider
-#' @param button_label text for the button
-#' @param min min value of slider
-#' @param max max value of slider
-#' @param start start point of slider
-#' @param step smallest increment of slider movement
-#' @param slider_width horizontal width of slider
-#' @param require_movement does user need to move the slider?
-#' @param prompt the prompt to be displayed with the stimulus
-#' @param stimulus_duration how long the stimulus is displayed
-#' @param trial_duration how long the trial lasts
-#' @param response_ends_trial default = TRUE
+#' @param stimulus HTML stimulus
 #'
-#' @return
+#' @param labels Character vector of labels, to be spaced equally along slider
+#' @param button_label Text displayed on button at the end (default = "Continue")
+#' @param min Minimum value of the slider (default = 0)
+#' @param max Maximum value of the slider (default = 100)
+#' @param start Starting value of the slider (default = 50)
+#' @param step Smallest increment of slider movement (default = 1)
+#' @param slider_width Horizontal width of slider (defaults to max width)
+#' @param require_movement Does user need to move the slider to continue? (default = FALSE)
+#'
+#' @param prompt The prompt to be displayed with the stimulus (can include HTML markup)
+#' @param stimulus_duration How long to display stimulus in milliseconds? (default is to remain until response)
+#' @param trial_duration How long to wait for response in milliseconds? (default is to wait indefinitely)
+#' @param response_ends_trial Does the trial end with response (default = TRUE) or continue until trial duration reached?
+#'
 #' @export
-#'
-#' @examples
 html_slider_response <- function(
   stimulus,
   labels = NULL,

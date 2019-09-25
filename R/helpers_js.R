@@ -1,6 +1,6 @@
 
 
-#' Interpret a string as javascript
+#' Interpret as raw javascript
 #'
 #' @param x the code as a string
 #' @export
@@ -9,7 +9,7 @@ js_code <- function(x) {
   x
 }
 
-#' Interpret the input as logical
+#' Interpret as javascript logical
 #'
 #' @param x a value to be coerced to logical
 #' @export
@@ -17,7 +17,7 @@ js_logical <- function(x) {
   as.logical(x)
 }
 
-#' Interpret the input as numeric
+#' Interpret as javascript numeric
 #'
 #' @param x a value to be coerced to numeric
 #' @export
@@ -26,7 +26,7 @@ js_numeric <- function(x) {
 }
 
 
-#' Specify js string
+#' Interpret as javascript string
 #' @param ... strings to be concatenated with +
 #' @export
 js_string <- function(...) {
@@ -39,7 +39,7 @@ js_string <- function(...) {
   js_code(s)
 }
 
-#' Specify js structure
+#' Interpret as javascript structure
 #'
 #' @param ... list of name/value pairs
 #'
@@ -48,7 +48,7 @@ js_struct <- function(...) {
   list(...)
 }
 
-#' Specify js array
+#' Interpret as javascript array
 #'
 #' @param ... values pairs
 #'
