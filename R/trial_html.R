@@ -23,8 +23,10 @@ html_keyboard_response <- function(
     trial(
       type = "html-keyboard-response",
       stimulus = stimulus,
+      choices = choices,
       prompt = prompt,
       stimulus_duration = stimulus_duration,
+      trial_duration = trial_duration,
       response_ends_trial = response_ends_trial
     )
   )
@@ -37,6 +39,7 @@ html_keyboard_response <- function(
 #' @param stimulus HTML stimulus
 #'
 #' @param choices Character vector with labels for the buttons
+#'
 #' @param button_html HTML templay specifying the buttons (defaults to jsPsych default)
 #' @param margin_vertical Vertical margin of the buttons (default "0px")
 #' @param margin_horizontal Horizontal margin of the buttons (default "8px")
@@ -51,23 +54,25 @@ html_button_response <- function(
   stimulus,
   choices,
   button_html = NULL,
+  margin_vertical = "0px",
+  margin_horizontal = "8px",
   prompt = NULL,
   stimulus_duration = NULL,
   trial_duration = NULL,
-  margin_vertical = "0px",
-  margin_horizontal = "8px",
   response_ends_trial = TRUE
 ) {
   drop_nulls(
     trial(
       type = "html-keyboard-response",
       stimulus = stimulus,
-      prompt = prompt,
-      stimulus_duration = stimulus_duration,
-      response_ends_trial = response_ends_trial,
+      choices = choices,
       button_html = button_html,
       margin_vertical = margin_vertical,
-      margin_horizontal = margin_horizontal
+      margin_horizontal = margin_horizontal,
+      prompt = prompt,
+      stimulus_duration = stimulus_duration,
+      trial_duration = trial_duration,
+      response_ends_trial = response_ends_trial
     )
   )
 }
