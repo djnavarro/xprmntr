@@ -7,8 +7,7 @@
 image_keyboard_response(stimulus, stimulus_height = NULL,
   stimulus_width = NULL, maintain_aspect_ratio = TRUE,
   choices = any_key(), prompt = NULL, stimulus_duration = NULL,
-  trial_duration = NULL, margin_vertical = "0px",
-  margin_horizontal = "8px", response_ends_trial = TRUE)
+  trial_duration = NULL, response_ends_trial = TRUE)
 }
 \arguments{
 \item{stimulus}{Image file, specified using the resource() function}

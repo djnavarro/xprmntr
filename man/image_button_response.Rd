@@ -6,9 +6,9 @@
 \usage{
 image_button_response(stimulus, stimulus_height = NULL,
   stimulus_width = NULL, maintain_aspect_ratio = TRUE,
-  choices = character(0), button_html = NULL, prompt = NULL,
+  choices = character(0), button_html = NULL,
+  margin_vertical = "0px", margin_horizontal = "8px", prompt = NULL,
   stimulus_duration = NULL, trial_duration = NULL,
-  margin_vertical = "0px", margin_horizontal = "8px",
   response_ends_trial = TRUE)
 }
 \arguments{
@@ -24,15 +24,15 @@ image_button_response(stimulus, stimulus_height = NULL,
 
 \item{button_html}{HTML templay specifying the buttons (defaults to jsPsych default)}
 
+\item{margin_vertical}{Vertical margin of the buttons (default "0px")}
+
+\item{margin_horizontal}{Horizontal margin of the buttons (default "8px")}
+
 \item{prompt}{The prompt to be displayed with the stimulus (can include HTML markup)}
 
 \item{stimulus_duration}{How long to display stimulus in milliseconds? (default is to remain until response)}
 
 \item{trial_duration}{How long to wait for response in milliseconds? (default is to wait indefinitely)}
-
-\item{margin_vertical}{Vertical margin of the buttons (default "0px")}
-
-\item{margin_horizontal}{Horizontal margin of the buttons (default "8px")}
 
 \item{response_ends_trial}{Does the trial end with response (default = TRUE) or continue until trial duration reached?}
 }
