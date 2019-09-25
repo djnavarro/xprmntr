@@ -93,7 +93,8 @@ experiment(
   path = "~/Desktop/expt",
   resources = system.file("extdata", "img", package = "xprmntr"),
   default_iti = 250,
-  on_finish = js_code("xprmntr.save_locally")
+  on_finish = js_code("xprmntr.save_locally"),
+  preload_images = resource(flag_files)
 )
 
 
