@@ -4,23 +4,23 @@ library(xprmntr)
 # define trial events -----------------------------------------------------
 
 # define a welcome trial
-welcome <- html_keyboard_response(
-  stimulus = "Welcome to the experiment! Press any key to continue"
+welcome <- trial_html_key(
+  stimulus = stimulus_html("Welcome to the experiment! Press any key to continue"),
+  response = respond_key("any")
 )
 
 # define a fixation trial
-fixation <- html_keyboard_response(
-  stimulus = '<div style="font-size:60px;">+</div>',
-  choices = no_key(),
+fixation <- trial_html_key(
+  stimulus = stimulus_html('<div style="font-size:60px;">+</div>'),
+  response = respond_key("none"),
   trial_duration = 500
 )
 
 # define a test trial
-query <- trial(
-  type = "image-keyboard-response",
-  stimulus = variable("stimulus"),
+query <- trial_image_key(
+  stimulus = stimulus_image(stimulus = variable("stimulus")),
   prompt = variable("prompt"),
-  choices = c('y', 'n')
+  response = respond_key("y","n")
 )
 
 # define a survey question
@@ -38,7 +38,7 @@ likert2 <- question_likert(
 )
 
 # define a likert survey page
-survey1 <- survey_likert(
+survey1 <- trial_survey_likert(
   questions = list(likert1, likert2),
   preamble = "We have some questions"
 )
@@ -58,15 +58,15 @@ multi2 <- question_multi_choice(
 )
 
 # define a likert survey page
-survey2 <- survey_multi_choice(
+survey2 <- trial_survey_multi_choice(
   questions = list(multi1, multi2),
   preamble = "We have some more questions"
 )
 
 
 # define an end of experiment trial
-finish <- html_keyboard_response(
-  stimulus = "All done!"
+finish <- trial_html_key(
+  stimulus = stimulus_html("All done!")
 )
 
 

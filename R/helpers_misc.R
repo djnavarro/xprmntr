@@ -10,23 +10,6 @@ resource <- function(file) {
   file.path("resources", file)
 }
 
-#' Keyboard responses
-#'
-#' @rdname keys
-#' @details The \code{any_key()} function allows the user to continue to the
-#' next trial by pressing any key. The \code{no_key()} function ensures that
-#' no keypress can terminate the trial, nor will any response be recorded.
-#' @export
-any_key <- function() {
-  js_code("jsPsych.ANY_KEY")
-}
-
-#' @rdname keys
-#' @export
-no_key <- function() {
-  js_code("jsPsych.NO_KEYS")
-}
-
 drop_nulls <- function(x) {
   x[purrr::map_lgl(x, ~!is.null(.x))]
 }

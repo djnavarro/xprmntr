@@ -50,7 +50,7 @@ question_multi_choice <- function(
 #' @param button_label Text displayed on button at the end (default = "Continue")
 #'
 #' @export
-survey_likert <- function(
+trial_survey_likert <- function(
   questions,
   shuffle = FALSE,
   preamble = "",
@@ -78,7 +78,7 @@ survey_likert <- function(
 #' @param button_label Text displayed on button at the end (default = "Continue")
 #'
 #' @export
-survey_multi_choice <- function(
+trial_survey_multi_choice <- function(
   questions,
   shuffle = FALSE,
   preamble = "",
