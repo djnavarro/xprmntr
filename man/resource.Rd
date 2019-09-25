@@ -2,7 +2,7 @@
 % Please edit documentation in R/helpers.R
 \name{resource}
 \alias{resource}
-\title{Refer to a resource file}
+\title{Refers to a resource file}
 \usage{
 resource(file)
 }
@@ -10,5 +10,5 @@ resource(file)
 \item{file}{path}
 }
 \description{
-Refer to a resource file
+Refers to a resource file
 }

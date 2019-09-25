@@ -1,72 +1,113 @@
 library(xprmntr)
 
-# resource folder
-resources <- system.file("extdata", "img", package = "xprmntr")
 
-# variables to use
-flag_images <- c("bisexual.svg", "transgender.svg", "rainbow.svg")
-flag_names <- c("bisexual", "transgender", "LGBT")
+# define trial events -----------------------------------------------------
 
 # define a welcome trial
-welcome <- trial(
-  type = "html-keyboard-response",
-  stimulus = "Welcome to the experiment! Press any key to continue",
-  choices = code("jsPsych.ANY_KEY")
+welcome <- html_keyboard_response(
+  stimulus = "Welcome to the experiment! Press any key to continue"
 )
 
 # define a fixation trial
-fixation <- trial(
-  type = "html-keyboard-response",
+fixation <- html_keyboard_response(
   stimulus = '<div style="font-size:60px;">+</div>',
-  choices =  code("jsPsych.NO_KEYS"),
+  choices = no_key(),
   trial_duration = 500
 )
 
 # define a test trial
 query <- trial(
   type = "image-keyboard-response",
-  stimulus = use_variable("stimulus"),
-  prompt = use_variable("prompt"),
+  stimulus = variable("stimulus"),
+  prompt = variable("prompt"),
   choices = c('y', 'n')
 )
 
-# nested timelines with repetitions and variables
-testing <- timeline(fixation, query) %>%
-  with_variables(
-    prompt = paste("is this the", flag_names, "flag? (y/n)"),
-    stimulus = resource(flag_images)) %>%
-  with_parameters(randomize_order = TRUE, repetitions = 2)
-
-# post experimental questionnaire
-survey <- trial(
-  type = "survey-likert",
-  questions = list(list(
-    prompt = "How much did you enjoy this?",
-    labels = c("a lot", "not much", "not at all"),
-    required = TRUE
-  ))
+# define a survey question
+likert1 <- question_likert(
+  prompt = "How confident were you in your answers?",
+  labels = c("very unsure", "somewhat unsure", "somewhat sure", "very sure"),
+  required = TRUE
 )
+
+# define a survey question
+likert2 <- question_likert(
+  prompt = "How bored were you in this experient?",
+  labels = c("not at all bored", "somewhat bored", "very bored"),
+  required = FALSE
+)
+
+# define a likert survey page
+survey1 <- survey_likert(
+  questions = list(likert1, likert2),
+  preamble = "We have some questions"
+)
+
+# define a survey question
+multi1 <- question_multi_choice(
+  prompt = "What gender are you?",
+  options = c("male", "female", "non-binary", "other"),
+  required = FALSE
+)
+
+# define a survey question
+multi2 <- question_multi_choice(
+  prompt = "Do you identify as LGBTIQ?",
+  options = c("yeah", "nah"),
+  required = FALSE
+)
+
+# define a likert survey page
+survey2 <- survey_multi_choice(
+  questions = list(multi1, multi2),
+  preamble = "We have some more questions"
+)
+
 
 # define an end of experiment trial
-finish <- trial(
-  type = "html-keyboard-response",
-  stimulus = "All done!",
-  choices = code("jsPsych.ANY_KEY")
+finish <- html_keyboard_response(
+  stimulus = "All done!"
 )
 
-# everything
-experiment <- timeline(welcome, testing, survey, finish)
 
-# construct the experiment
-make_experiment(
-  timeline = experiment,
+
+
+# organise into a structure -----------------------------------------------
+
+# testing procedure is a timeline of fixate/query events
+testing <- timeline(fixation, query) %>%
+  with_variables(
+    prompt = paste("is this the", c("bisexual", "transgender", "LGBT"), "flag? (y/n)"),
+    stimulus = resource(c("bisexual.svg", "transgender.svg", "rainbow.svg"))) %>%
+  with_parameters(randomize_order = TRUE, repetitions = 2)
+
+# randomise the order???
+surveys <- timeline(survey1, survey2)
+
+#  overal; strcuture
+all_events <- timeline(welcome, testing, surveys, finish)
+
+
+
+
+# write the experiment files ----------------------------------------------
+
+experiment(
+  timeline = all_events,
   path = "~/Desktop/expt",
-  resources = resources,
+  resources = system.file("extdata", "img", package = "xprmntr"),
   default_iti = 250,
-  on_finish = code("xprmntr.save_locally")
+  on_finish = js_code("xprmntr.save_locally")
 )
 
-run_locally(
-  path = "~/Desktop/expt",
-  port = 8000
-)
+
+
+
+# run the experiment ------------------------------------------------------
+
+if(FALSE) {
+  run_locally(
+    path = "~/Desktop/expt",
+    port = 8000
+  )
+}

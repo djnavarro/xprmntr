@@ -6,6 +6,9 @@
 \usage{
 timeline(...)
 }
+\arguments{
+\item{...}{trial objects to add to this timeline}
+}
 \description{
 Initialise a timeline
 }

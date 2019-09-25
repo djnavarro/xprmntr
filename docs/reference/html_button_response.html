@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Initialise a timeline — timeline • xprmntr</title>
+<title>Create an HTML stimulus trial with button press response — html_button_response • xprmntr</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
 
 
-<meta property="og:title" content="Initialise a timeline — timeline" />
+<meta property="og:title" content="Create an HTML stimulus trial with button press response — html_button_response" />
 
-<meta property="og:description" content="Initialise a timeline" />
+<meta property="og:description" content="Create an HTML stimulus trial with button press response" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -103,25 +103,60 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Initialise a timeline</h1>
-    <small class="dont-index">Source: <a href='https://github.com/djnavarro/xprmntr/blob/master/R/timeline_build.R'><code>R/timeline_build.R</code></a></small>
-    <div class="hidden name"><code>timeline.Rd</code></div>
+    <h1>Create an HTML stimulus trial with button press response</h1>
+    <small class="dont-index">Source: <a href='https://github.com/djnavarro/xprmntr/blob/master/R/html.R'><code>R/html.R</code></a></small>
+    <div class="hidden name"><code>html_button_response.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Initialise a timeline</p>
+    <p>Create an HTML stimulus trial with button press response</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>timeline</span>(<span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>html_button_response</span>(<span class='no'>stimulus</span>, <span class='no'>choices</span>, <span class='kw'>prompt</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>stimulus_duration</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>trial_duration</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>response_ends_trial</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>button_html</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>margin_vertical</span> <span class='kw'>=</span> <span class='st'>"0px"</span>, <span class='kw'>margin_horizontal</span> <span class='kw'>=</span> <span class='st'>"8px"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>...</th>
-      <td><p>trial objects to add to this timeline</p></td>
+      <th>stimulus</th>
+      <td><p>the HTML stimulus</p></td>
+    </tr>
+    <tr>
+      <th>choices</th>
+      <td><p>character vector specifying labels</p></td>
+    </tr>
+    <tr>
+      <th>prompt</th>
+      <td><p>the prompt to be displayed with the stimulus</p></td>
+    </tr>
+    <tr>
+      <th>stimulus_duration</th>
+      <td><p>how long the stimulus is displayed</p></td>
+    </tr>
+    <tr>
+      <th>trial_duration</th>
+      <td><p>how long the trial lasts</p></td>
+    </tr>
+    <tr>
+      <th>response_ends_trial</th>
+      <td><p>default = TRUE</p></td>
+    </tr>
+    <tr>
+      <th>button_html</th>
+      <td><p>HTML specifying the buttons (defaults to jsPsych default)</p></td>
+    </tr>
+    <tr>
+      <th>margin_vertical</th>
+      <td><p>vertical margin of the buttons</p></td>
+    </tr>
+    <tr>
+      <th>margin_horizontal</th>
+      <td><p>horizontal margin of the buttons</p></td>
     </tr>
     </table>
     

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Initialise a timeline — timeline • xprmntr</title>
+<title>Define a multiple choice question — question_multi_choice • xprmntr</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
 
 
-<meta property="og:title" content="Initialise a timeline — timeline" />
+<meta property="og:title" content="Define a multiple choice question — question_multi_choice" />
 
-<meta property="og:description" content="Initialise a timeline" />
+<meta property="og:description" content="Define a multiple choice question" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -103,25 +103,42 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Initialise a timeline</h1>
-    <small class="dont-index">Source: <a href='https://github.com/djnavarro/xprmntr/blob/master/R/timeline_build.R'><code>R/timeline_build.R</code></a></small>
-    <div class="hidden name"><code>timeline.Rd</code></div>
+    <h1>Define a multiple choice question</h1>
+    <small class="dont-index">Source: <a href='https://github.com/djnavarro/xprmntr/blob/master/R/survey.R'><code>R/survey.R</code></a></small>
+    <div class="hidden name"><code>question_multi_choice.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Initialise a timeline</p>
+    <p>Define a multiple choice question</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>timeline</span>(<span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>question_multi_choice</span>(<span class='no'>prompt</span>, <span class='no'>options</span>, <span class='kw'>required</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>horizontal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>...</th>
-      <td><p>trial objects to add to this timeline</p></td>
+      <th>prompt</th>
+      <td><p>The question</p></td>
+    </tr>
+    <tr>
+      <th>options</th>
+      <td><p>The set of possible answers</p></td>
+    </tr>
+    <tr>
+      <th>required</th>
+      <td><p>Is this a required question (default = FALSE)</p></td>
+    </tr>
+    <tr>
+      <th>horizontal</th>
+      <td><p>Should the options be laid out horizontally (default = FALSE)</p></td>
+    </tr>
+    <tr>
+      <th>name</th>
+      <td><p>A name for the question (if NULL, defaults to Q0, Q1, etc)</p></td>
     </tr>
     </table>
     

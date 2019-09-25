@@ -2,15 +2,13 @@
 % Please edit documentation in R/js_types.R
 \name{js_string}
 \alias{js_string}
-\title{Specify js string directly}
+\title{Specify js string}
 \usage{
 js_string(...)
 }
 \arguments{
-\item{...}{arguments passed to the trial plugin}
-
-\item{type}{the type of trial block}
+\item{...}{strings to be concatenated with +}
 }
 \description{
-Specify js string directly
+Specify js string
 }

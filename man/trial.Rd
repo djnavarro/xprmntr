@@ -2,15 +2,15 @@
 % Please edit documentation in R/timeline_build.R
 \name{trial}
 \alias{trial}
-\title{Adds an arbitrary trial block to the timeline}
+\title{Adds an arbitrary trial to the timeline}
 \usage{
 trial(type, ...)
 }
 \arguments{
-\item{type}{the type of trial block}
+\item{type}{the type of trial}
 
 \item{...}{arguments passed to the trial plugin}
 }
 \description{
-Adds an arbitrary trial block to the timeline
+Adds an arbitrary trial to the timeline
 }

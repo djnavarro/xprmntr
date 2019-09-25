@@ -7,7 +7,9 @@
 run_locally(path = ".", port = 8000)
 }
 \arguments{
-\item{path}{path}
+\item{path}{the experiment directory}
+
+\item{port}{port to use}
 }
 \description{
 Run a jspsych experiment

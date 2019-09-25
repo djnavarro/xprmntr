@@ -3,7 +3,8 @@
 
 #' Run a jspsych experiment
 #'
-#' @param path path
+#' @param path the experiment directory
+#' @param port port to use
 #' @export
 run_locally <- function(path = ".", port = 8000) {
 
@@ -33,7 +34,7 @@ run_locally <- function(path = ".", port = 8000) {
   })
 
   url <- paste0("http://localhost:", port)
-  browseURL(url)
+  utils::browseURL(url)
   pr$run(swagger = FALSE, port = port)
 
 }

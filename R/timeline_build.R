@@ -2,6 +2,8 @@
 # author: Danielle Navarro
 
 #' Initialise a timeline
+#'
+#' @param ... trial objects to add to this timeline
 #' @export
 timeline <- function(...){
   tl <- list(timeline = list(...))
@@ -9,23 +11,24 @@ timeline <- function(...){
   tl
 }
 
-#' Adds an arbitrary trial block to the timeline
-#' @param type the type of trial block
+#' Adds an arbitrary trial to the timeline
+#'
+#' @param type the type of trial
 #' @param ... arguments passed to the trial plugin
 #' @export
 trial <- function(type, ...) {
-  return(c(list(type = type), list(...)))
+  return(list(type = type, ...))
 }
 
-#' Insert a timeline variable
+#' Use a timeline variable
 #'
 #' @param name name of the variable to insert
 #'
 #' @export
 #'
-use_variable <- function(name) {
+variable <- function(name) {
   str <- paste0("jsPsych.timelineVariable('",name, "')")
-  return(code(str))
+  return(js_code(str))
 }
 
 #' Attach a timeline variable to timeline object
