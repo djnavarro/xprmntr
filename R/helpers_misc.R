@@ -1,6 +1,18 @@
 # file: helpers.R
 # author: Danielle Navarro
 
+#' Use any key to respond
+#' @export
+any_key <- function() {
+  js_code("jsPsych.ANY_KEY")
+}
+
+#' No key will register a response
+#' @export
+no_key <- function() {
+  js_code("jsPsych.NO_KEY")
+}
+
 
 #' Refers to a resource file
 #'

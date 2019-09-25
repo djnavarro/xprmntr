@@ -5,22 +5,21 @@ library(xprmntr)
 
 # define a welcome trial
 welcome <- trial_html_key(
-  stimulus = stimulus_html("Welcome to the experiment! Press any key to continue"),
-  response = respond_key("any")
+  "Welcome to the experiment! Press any key to continue",
 )
 
 # define a fixation trial
 fixation <- trial_html_key(
-  stimulus = stimulus_html('<div style="font-size:60px;">+</div>'),
-  response = respond_key("none"),
+  stimulus = '<div style="font-size:60px;">+</div>',
+  choices = no_key(),
   trial_duration = 500
 )
 
 # define a test trial
 query <- trial_image_key(
-  stimulus = stimulus_image(stimulus = variable("stimulus")),
+  stimulus = variable("stimulus"),
   prompt = variable("prompt"),
-  response = respond_key("y","n")
+  choices = c("y","n")
 )
 
 # define a survey question
@@ -65,27 +64,24 @@ survey2 <- trial_survey_multi_choice(
 
 
 # define an end of experiment trial
-finish <- trial_html_key(
-  stimulus = stimulus_html("All done!")
-)
-
+finish <- trial_html_key("All done!")
 
 
 
 # organise into a structure -----------------------------------------------
 
+flag_names <- c("bisexual", "transgender", "LGBT")
+flag_files <- c("bisexual.svg", "transgender.svg", "rainbow.svg")
+
 # testing procedure is a timeline of fixate/query events
 testing <- timeline(fixation, query) %>%
   with_variables(
-    prompt = paste("is this the", c("bisexual", "transgender", "LGBT"), "flag? (y/n)"),
-    stimulus = resource(c("bisexual.svg", "transgender.svg", "rainbow.svg"))) %>%
+    prompt = paste("is this the", flag_names, "flag? (y/n)"),
+    stimulus = resource(flag_files)) %>%
   with_parameters(randomize_order = TRUE, repetitions = 2)
 
-# randomise the order???
-surveys <- timeline(survey1, survey2)
-
-#  overal; strcuture
-all_events <- timeline(welcome, testing, surveys, finish)
+#  overall procedure
+all_events <- timeline(welcome, testing, survey1, survey2, finish)
 
 
 
