@@ -2,6 +2,17 @@
 # author: Danielle Navarro
 
 
+# # returns a list of expressions
+capture_dots <- function(...) {
+  as.list(substitute(list(...)))[-1L]
+}
+
+#' @importFrom magrittr %>%
+#' @export
+magrittr::`%>%`
+
+
+
 #' Refer to a resource file
 #'
 #' @param file path
@@ -9,40 +20,6 @@
 resource <- function(file) {
   #purrr::map_chr(file, function(.x) {attr(.x, "resource")  <- TRUE; .x}, )
   file.path("resources", file)
-}
-
-#' @importFrom magrittr %>%
-#' @export
-NULL
-
-
-#' Specify js code directly
-#'
-#' @param x the code as a string
-#' @export
-code <- function(x) {
-  class(x) <- "json"
-  x
-}
-
-# # returns a list of expressions
-capture_dots <- function(...) {
-  as.list(substitute(list(...)))[-1L]
-}
-
-
-#' Specify js string concatenation directly
-#' @param type the type of trial block
-#' @param ... arguments passed to the trial plugin
-#' @export
-string <- function(...) {
-  s <- list(...)
-  string_quote <- function(c) {
-    if(is(c,"json")) { return(c) }
-    return(paste0('"',c,'"'))
-  }
-  s <- paste(lapply(s, string_quote), collapse = " + ")
-  code(s)
 }
 
 
