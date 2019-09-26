@@ -27,7 +27,7 @@ trial_html_button <- function(
 ) {
   drop_nulls(
     trial(
-      type = "html-keyboard-response",
+      type = "html-button-response",
 
       stimulus = stimulus,
 
