@@ -13,12 +13,10 @@
 #' @export
 trial_html_button <- function(
   stimulus,
-
   choices,
   button_html = NULL,
   margin_vertical = "0px",
   margin_horizontal = "8px",
-
   prompt = NULL,
   stimulus_duration = NULL,
   trial_duration = NULL,
@@ -28,18 +26,16 @@ trial_html_button <- function(
   drop_nulls(
     trial(
       type = "html-button-response",
-
       stimulus = stimulus,
-
       choices = choices,
       button_html = button_html,
       margin_vertical = margin_vertical,
       margin_horizontal = margin_horizontal,
-
       prompt = prompt,
       stimulus_duration = stimulus_duration,
       trial_duration = trial_duration,
-      response_ends_trial = response_ends_trial
+      response_ends_trial = response_ends_trial,
+      ...
     )
   )
 }
