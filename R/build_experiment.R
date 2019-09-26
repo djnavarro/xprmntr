@@ -10,7 +10,7 @@
 #' @param ... pass to init
 #'
 #' @export
-experiment <- function(timeline, path, resources, ...) {
+experiment <- function(timeline, path, resources = NULL, ...) {
 
   # set up
   init <- list(...)
@@ -33,12 +33,13 @@ experiment <- function(timeline, path, resources, ...) {
   dir.create(file.path(path, "data"))
 
   # copy resource files
-  file.copy(
-     from = list.files(resources, full.names = TRUE),
-     to = file.path(path, "experiment", "resources"),
-     recursive = TRUE
-  )
-
+  if(!is.null(resources)) {
+    file.copy(
+      from = list.files(resources, full.names = TRUE),
+      to = file.path(path, "experiment", "resources"),
+      recursive = TRUE
+    )
+  }
   # copy jspsych files
   file.copy(
     from = system.file(
