@@ -17,8 +17,3 @@ xprmntr.save_locally = function() {
   xhr.send(JSON.stringify({filename: file, filedata: data}));
 };
 
-// for use in the on_finish function
-xprmntr.data_lag = function(n) {
-  jsPsych.data.get().last(n+1).values()[0];
-};
-

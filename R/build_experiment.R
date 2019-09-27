@@ -91,6 +91,7 @@ add_resources <- function(
 #'
 #' @param timeline tl
 #' @param path  p
+#' @param columns columns
 #' @param resources r
 #' @param ... pass to init
 #'

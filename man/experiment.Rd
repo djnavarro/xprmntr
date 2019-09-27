@@ -13,6 +13,8 @@ experiment(timeline, path, resources = NULL, columns = NULL, ...)
 
 \item{resources}{r}
 
+\item{columns}{columns}
+
 \item{...}{pass to init}
 }
 \description{

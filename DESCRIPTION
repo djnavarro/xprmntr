@@ -21,4 +21,5 @@ Imports:
     purrr,
     magrittr,
     methods,
-    utils
+    utils,
+    tibble
