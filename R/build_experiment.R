@@ -2,6 +2,14 @@
 # author: Danielle Navarro
 
 
+#' Wrapper to jsPsych.data.addProperty
+#'
+#' @param ... Name/value pairs
+#' @export
+add_properties <- function(...) {
+  list(...)
+}
+
 # TODO this needs to allow manual overrides and handle clashes etc...
 #' Construct a resource specification from paths
 #'
@@ -13,7 +21,7 @@
 #' @param style File extensions assumed to be stylesheets
 #'
 #' @export
-set_resource <- function(
+add_resources <- function(
   from,
   audio  = c(".mp3", ".wav", ".aif", ".mid"),
   video  = c(".mp4", ".mpg", ".mov", ".wmv"),
