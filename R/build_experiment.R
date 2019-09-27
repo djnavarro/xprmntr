@@ -2,6 +2,7 @@
 # author: Danielle Navarro
 
 
+
 #' Make the experiment
 #'
 #' @param timeline tl
@@ -10,7 +11,7 @@
 #' @param ... pass to init
 #'
 #' @export
-experiment <- function(timeline, path, resources = NULL, ...) {
+experiment <- function(timeline, path, resources = NULL, columns = NULL, ...) {
 
   # set up
   init <- list(...)
@@ -55,6 +56,14 @@ experiment <- function(timeline, path, resources = NULL, ...) {
     to = file.path(path, "experiment", "xprmntr")
   )
 
+  # variables to add to the data storage
+  if(is.null(columns)) {
+    add_properties <- character(0)
+  } else {
+    prop_str <- jsonlite::toJSON(columns, pretty = TRUE, json_verbatim = TRUE)
+    add_properties <- paste0("jsPsych.data.addProperties(", prop_str, ");\n")
+  }
+
   # write the timeline to a js string
   timeline_json <- paste(
     "var timeline = ",
@@ -72,7 +81,7 @@ experiment <- function(timeline, path, resources = NULL, ...) {
 
   # write both to file
   writeLines(
-    text = c(timeline_json, init_json),
+    text = c(add_properties, timeline_json, init_json),
     con = file.path(path, "experiment", "experiment.js")
   )
 

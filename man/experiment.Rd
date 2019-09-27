@@ -4,7 +4,7 @@
 \alias{experiment}
 \title{Make the experiment}
 \usage{
-experiment(timeline, path, resources, ...)
+experiment(timeline, path, resources = NULL, columns = NULL, ...)
 }
 \arguments{
 \item{timeline}{tl}
