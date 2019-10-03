@@ -19,7 +19,24 @@ no_key <- function() {
 #' @param file path
 #' @export
 resource <- function(file) {
-  file.path("resources", file)
+
+  # THIS IS A HACK -- FIX THIS
+  audio  <- c(".mp3", ".wav", ".aif", ".mid")
+  video  <- c(".mp4", ".mpg", ".mov", ".wmv")
+  image  <- c(".jpg", ".png", ".bmp", ".svg", ".tiff")
+  script <- c(".js")
+  style  <- c(".css")
+
+  # assign types based on file extensions
+  fileext <- tolower(gsub("^.*(\\.[^\\.]*)$", "\\1", file))
+  type <- rep("other", length(fileext))
+  type[fileext %in% audio] <- "audio"
+  type[fileext %in% video] <- "video"
+  type[fileext %in% image] <- "image"
+  type[fileext %in% script] <- "script"
+  type[fileext %in% style] <- "style"
+
+  file.path("resource", type, file)
 }
 
 drop_nulls <- function(x) {
