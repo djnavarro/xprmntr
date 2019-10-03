@@ -61,3 +61,6 @@ js_array <- function(...) {
   return(c(...))
 }
 
+list_to_jsarray <- purrr::lift_dl(js_array)
+
+

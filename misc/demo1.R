@@ -43,23 +43,35 @@ survey1 <- trial_survey_likert(
 )
 
 # define a survey question
-multi1 <- question_multi_choice(
+multi1 <- question_multi(
   prompt = "What gender are you?",
   options = c("male", "female", "non-binary", "other"),
   required = FALSE
 )
 
 # define a survey question
-multi2 <- question_multi_choice(
+multi2 <- question_multi(
   prompt = "Do you identify as LGBTIQ?",
   options = c("yeah", "nah"),
   required = FALSE
 )
 
-# define a likert survey page
+# define a multiple choice survey page
 survey2 <- trial_survey_multi_choice(
   questions = list(multi1, multi2),
   preamble = "We have some more questions"
+)
+
+# define a survey question
+multi3 <- question_multi(
+  prompt = "Select all that apply",
+  options = c("lesbian", "gay", "bisexual", "transgender"),
+  required = FALSE
+)
+
+# define a multi select page
+survey3 <- trial_survey_multi_select(
+  questions = list(multi3)
 )
 
 
@@ -80,18 +92,28 @@ testing <- timeline(fixation, query) %>%
     stimulus = resource(flag_files)) %>%
   with_parameters(randomize_order = TRUE, repetitions = 2)
 
+
 #  overall procedure
-all_events <- timeline(welcome, testing, survey1, survey2, finish)
+all_events <- timeline(
+  welcome,
+  testing,
+  survey1,
+  survey2,
+  survey3,
+  finish
+)
 
 
 
 
 # write the experiment files ----------------------------------------------
 
+resources <- add_resources(system.file("extdata", "img", package = "xprmntr"))
+
 experiment(
   timeline = all_events,
   path = "~/Desktop/expt",
-  resources = system.file("extdata", "img", package = "xprmntr"),
+  resources = resources,
   default_iti = 250,
   on_finish = js_code("xprmntr.save_locally"),
   preload_images = resource(flag_files)
