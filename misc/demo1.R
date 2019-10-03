@@ -74,6 +74,13 @@ survey3 <- trial_survey_multi_select(
   questions = list(multi3)
 )
 
+# define a free text page
+survey4 <- trial_survey_text(
+  questions = list(
+    question_text(prompt = "Anything to add?", rows = 4),
+    question_text(prompt = "Enter completion code")
+  )
+)
 
 # define an end of experiment trial
 finish <- trial_html_key("All done!")
@@ -100,6 +107,7 @@ all_events <- timeline(
   survey1,
   survey2,
   survey3,
+  survey4,
   finish
 )
 
