@@ -52,6 +52,9 @@ capture_dots <- function(...) {
 #' @export
 magrittr::`%>%`
 
+#' @importFrom rlang %||%
+NULL
+
 get_timestamp <- function() {
   tsp <- as.character(Sys.time())
   tsp <- gsub("[ :]", "-", tsp)
