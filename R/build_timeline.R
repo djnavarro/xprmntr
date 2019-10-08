@@ -20,6 +20,9 @@ trial <- function(type, ...) {
   return(list(type = type, ...))
 }
 
+# lifted version
+trial_l <- purrr::lift_dl(trial)
+
 #' Use a timeline variable
 #'
 #' @param name name of the variable to insert

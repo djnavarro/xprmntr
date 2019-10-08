@@ -22,4 +22,6 @@ Imports:
     magrittr,
     methods,
     utils,
-    tibble
+    tibble,
+    rlang,
+    dplyr

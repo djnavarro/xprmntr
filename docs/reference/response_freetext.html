@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a simple trial — trial_simple • xprmntr</title>
+<title>Specify a free text response — response_freetext • xprmntr</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
 
 
-<meta property="og:title" content="Create a simple trial — trial_simple" />
+<meta property="og:title" content="Specify a free text response — response_freetext" />
 
-<meta property="og:description" content="Create a simple trial" />
+<meta property="og:description" content="Specify a free text response" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -103,56 +103,39 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a simple trial</h1>
-    <small class="dont-index">Source: <a href='https://github.com/djnavarro/xprmntr/blob/master/R/trial_simple.R'><code>R/trial_simple.R</code></a></small>
-    <div class="hidden name"><code>trial_simple.Rd</code></div>
+    <h1>Specify a free text response</h1>
+    <small class="dont-index">Source: <a href='https://github.com/djnavarro/xprmntr/blob/master/R/trial_survey.R'><code>R/trial_survey.R</code></a></small>
+    <div class="hidden name"><code>response_freetext.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Create a simple trial</p>
+    <p>Specify a free text response</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>trial_simple</span>(<span class='no'>cue</span>, <span class='no'>response</span>, <span class='kw'>prompt</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>stimulus_duration</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>trial_duration</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>response_ends_trial</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>response_freetext</span>(<span class='kw'>placeholder</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>rows</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>columns</span> <span class='kw'>=</span> <span class='fl'>40</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>cue</th>
-      <td><p>the cue type for the trial</p></td>
+      <th>placeholder</th>
+      <td><p>String specifying the placeholder text</p></td>
     </tr>
     <tr>
-      <th>response</th>
-      <td><p>the response type for the question</p></td>
+      <th>rows</th>
+      <td><p>Number of rows spanned by the text box</p></td>
     </tr>
     <tr>
-      <th>prompt</th>
-      <td><p>prompt to be displayed with the stimulus (can include HTML markup)</p></td>
-    </tr>
-    <tr>
-      <th>stimulus_duration</th>
-      <td><p>how long to display stimulus in milliseconds? (default is to remain until response)</p></td>
-    </tr>
-    <tr>
-      <th>trial_duration</th>
-      <td><p>how long to wait for response in milliseconds? (default is to wait indefinitely)</p></td>
-    </tr>
-    <tr>
-      <th>response_ends_trial</th>
-      <td><p>does the trial end with response (default = TRUE) or continue until trial duration reached?</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>arguments to be passed to trial()</p></td>
+      <th>columns</th>
+      <td><p>Number of columns spanned by the text box</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A trial object</p>
+    <p>An object of class xpt_response</p>
     
 
   </div>

@@ -2,38 +2,23 @@
 % Please edit documentation in R/trial_survey.R
 \name{trial_survey}
 \alias{trial_survey}
-\alias{trial_survey_likert}
-\alias{trial_survey_multi_choice}
-\alias{trial_survey_multi_select}
-\alias{trial_survey_text}
-\title{Survey trials}
+\title{Create a survey trial}
 \usage{
-trial_survey_likert(questions, randomize_question_order = FALSE,
-  preamble = "", scale_width = NULL, button_label = "Continue")
-
-trial_survey_multi_choice(questions, randomize_question_order = FALSE,
-  preamble = "", button_label = "Continue")
-
-trial_survey_multi_select(questions, randomize_question_order = FALSE,
-  preamble = "", button_label = "Continue",
-  required_message = "You must choose at least one response for this question")
-
-trial_survey_text(questions, randomize_question_order = FALSE,
-  preamble = "", button_label = "Continue")
+trial_survey(questions, preamble = "",
+  randomize_question_order = FALSE, button_label = "Continue")
 }
 \arguments{
-\item{questions}{A list of questions}
+\item{questions}{A question or list of questions}
 
-\item{randomize_question_order}{Should the question order be randomised? (default = FALSE)}
+\item{preamble}{Text to appear above the questions}
 
-\item{preamble}{Text to display above the survey items}
+\item{randomize_question_order}{Should order be randomised?}
 
-\item{scale_width}{Width of a Likert response scale in pixels (NULL defaults to max)}
-
-\item{button_label}{Text displayed on button at the end (default = "Continue")}
-
-\item{required_message}{Warning shown when a user does not select any option in a required multi-select question}
+\item{button_label}{Text for the continue button}
+}
+\value{
+A trial object
 }
 \description{
-Survey trials
+Create a survey trial
 }

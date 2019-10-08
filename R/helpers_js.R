@@ -1,34 +1,36 @@
 
 
-#' Interpret as raw javascript
+#' Manually specify the JavaScript object type
 #'
-#' @param x the code as a string
+#' @param x an object to be coerced
+#' @param ... objects to be concatenated and coerced
+#' @name jshelpers
+NULL
+
 #' @export
+#' @rdname jshelpers
 js_code <- function(x) {
   class(x) <- "json"
   x
 }
 
-#' Interpret as javascript logical
-#'
-#' @param x a value to be coerced to logical
 #' @export
+#' @rdname jshelpers
 js_logical <- function(x) {
   as.logical(x)
 }
 
-#' Interpret as javascript numeric
-#'
-#' @param x a value to be coerced to numeric
 #' @export
+#' @rdname jshelpers
 js_numeric <- function(x) {
   as.numeric(x)
 }
 
 
-#' Interpret as javascript string
-#' @param ... strings to be concatenated with +
+# the ... here are individual strings
+
 #' @export
+#' @rdname jshelpers
 js_string <- function(...) {
   s <- list(...)
   string_quote <- function(c) {
@@ -39,20 +41,19 @@ js_string <- function(...) {
   js_code(s)
 }
 
-#' Interpret as javascript structure
-#'
-#' @param ... list of name/value pairs
-#'
+# the ... here are list of name/value pairs
+
 #' @export
+#' @rdname jshelpers
 js_struct <- function(...) {
   list(...)
 }
 
-#' Interpret as javascript array
-#'
-#' @param ... values pairs
-#'
+
+# the ... here are list of name/value pairs
+
 #' @export
+#' @rdname jshelpers
 js_array <- function(...) {
   classes <- purrr::map_chr(list(...), ~ class(.x)[1])
   if(any(classes == "list")) {

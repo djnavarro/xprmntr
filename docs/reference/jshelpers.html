@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a simple trial — trial_simple • xprmntr</title>
+<title>Manually specify the JavaScript object type — jshelpers • xprmntr</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
 
 
-<meta property="og:title" content="Create a simple trial — trial_simple" />
+<meta property="og:title" content="Manually specify the JavaScript object type — jshelpers" />
 
-<meta property="og:description" content="Create a simple trial" />
+<meta property="og:description" content="Manually specify the JavaScript object type" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -103,56 +103,41 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a simple trial</h1>
-    <small class="dont-index">Source: <a href='https://github.com/djnavarro/xprmntr/blob/master/R/trial_simple.R'><code>R/trial_simple.R</code></a></small>
-    <div class="hidden name"><code>trial_simple.Rd</code></div>
+    <h1>Manually specify the JavaScript object type</h1>
+    <small class="dont-index">Source: <a href='https://github.com/djnavarro/xprmntr/blob/master/R/helpers_js.R'><code>R/helpers_js.R</code></a></small>
+    <div class="hidden name"><code>jshelpers.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Create a simple trial</p>
+    <p>Manually specify the JavaScript object type</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>trial_simple</span>(<span class='no'>cue</span>, <span class='no'>response</span>, <span class='kw'>prompt</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>stimulus_duration</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>trial_duration</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>response_ends_trial</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>js_code</span>(<span class='no'>x</span>)
+
+<span class='fu'>js_logical</span>(<span class='no'>x</span>)
+
+<span class='fu'>js_numeric</span>(<span class='no'>x</span>)
+
+<span class='fu'>js_string</span>(<span class='no'>...</span>)
+
+<span class='fu'>js_struct</span>(<span class='no'>...</span>)
+
+<span class='fu'>js_array</span>(<span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>cue</th>
-      <td><p>the cue type for the trial</p></td>
-    </tr>
-    <tr>
-      <th>response</th>
-      <td><p>the response type for the question</p></td>
-    </tr>
-    <tr>
-      <th>prompt</th>
-      <td><p>prompt to be displayed with the stimulus (can include HTML markup)</p></td>
-    </tr>
-    <tr>
-      <th>stimulus_duration</th>
-      <td><p>how long to display stimulus in milliseconds? (default is to remain until response)</p></td>
-    </tr>
-    <tr>
-      <th>trial_duration</th>
-      <td><p>how long to wait for response in milliseconds? (default is to wait indefinitely)</p></td>
-    </tr>
-    <tr>
-      <th>response_ends_trial</th>
-      <td><p>does the trial end with response (default = TRUE) or continue until trial duration reached?</p></td>
+      <th>x</th>
+      <td><p>an object to be coerced</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>arguments to be passed to trial()</p></td>
+      <td><p>objects to be concatenated and coerced</p></td>
     </tr>
     </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A trial object</p>
     
 
   </div>
@@ -160,9 +145,7 @@
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-          </ul>
+                </ul>
 
   </div>
 </div>

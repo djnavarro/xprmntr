@@ -76,13 +76,121 @@
 <a href="#xprmntr" class="anchor"></a>xprmntr</h1></div>
 <!-- badges: start -->
 
-<p>The goal of <code>xprmntr</code> (pronounced: “experimenter”) is to let users build behavioural experiments in R run through the browser. Initially, the intention is to provide wrappers to the <a href="https://www.jspsych.org/">jspsych</a> javascript library.</p>
+<p>The goal of <code>xprmntr</code> (pronounced: “experimenter”) is to let users build behavioural experiments in R run through the browser, by providing wrappers to the <a href="https://www.jspsych.org/">jspsych</a> javascript library.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>The development version can be installed from <a href="https://github.com/">GitHub</a> with:</p>
 <pre><code><a href="https://rdrr.io/pkg/devtools/man/reexports.html"># install.packages("devtools")
 devtools::install_github("djnavarro/xprmntr")</a></code></pre>
+</div>
+<div id="goals" class="section level2">
+<h2 class="hasAnchor">
+<a href="#goals" class="anchor"></a>Goals</h2>
+<p>The jsPsych library is organised around a system of <em>plugins</em> that generate specific trial types that can be used in a behavioural experiment. The initial goals in xprmtnr is:</p>
+<ul>
+<li>To provide “general purpose” wrappers that can be used to insert <em>any</em> jsPsych plugin (including any novel plugin)</li>
+<li>To provide a convenient API that wraps around the “standard” plugins that come bundled with jsPsych, and provides some structure for the user</li>
+<li>To allow the client side experiment (jsPsych) to communicate with an R server using the plumber package so the experiment can call server-side R functions</li>
+<li>To allow experiments to deploy locally, or github pages, etc.</li>
+<li>To provide mechanisms to save locally, or to dropbox or similar cloud storage</li>
+</ul>
+</div>
+<div id="notes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#notes" class="anchor"></a>Notes</h2>
+<ul>
+<li>The “survey” family:
+<ul>
+<li>jspsych-survey-html-form</li>
+<li>jspsych-survey-likert</li>
+<li>jspsych-survey-multi-choice</li>
+<li>jspsych-survey-multi-select</li>
+<li>jspsych-survey-text</li>
+</ul>
+</li>
+<li>The “sr” family (stimulus-response):
+<ul>
+<li>jspsych-audio-button-response</li>
+<li>jspsych-audio-keyboard-response</li>
+<li>jspsych-audio-slider-response</li>
+<li>jspsych-html-button-response</li>
+<li>jspsych-html-keyboard-response</li>
+<li>jspsych-html-slider-response</li>
+<li>jspsych-image-button-response</li>
+<li>jspsych-image-keyboard-response</li>
+<li>jspsych-image-slider-response</li>
+<li>jspsych-video-button-response</li>
+<li>jspsych-video-keyboard-response</li>
+<li>jspsych-video-slider-response</li>
+</ul>
+</li>
+<li>The “categorise” family:
+<ul>
+<li>jspsych-categorize-animation</li>
+<li>jspsych-categorize-html</li>
+<li>jspsych-categorize-image</li>
+</ul>
+</li>
+<li>Other… not sure yet
+<ul>
+<li>jspsych-animation</li>
+<li>jspsych-cloze</li>
+<li>jspsych-free-sort</li>
+<li>jspsych-iat-html</li>
+<li>jspsych-iat-image</li>
+<li>jspsych-rdk</li>
+<li>jspsych-reconstruction</li>
+<li>jspsych-resize</li>
+<li>jspsych-same-different-html</li>
+<li>jspsych-same-different-image</li>
+<li>jspsych-serial-reaction-time</li>
+<li>jspsych-serial-reaction-time-mouse</li>
+<li>jspsych-visual-search-circle</li>
+<li>jspsych-vsl-animate-occlusion</li>
+<li>jspsych-vsl-grid-scene</li>
+</ul>
+</li>
+<li>“Meta???” family (not strictly “trials”)
+<ul>
+<li>jspsych-external-html</li>
+<li>jspsych-call-function</li>
+<li>jspsych-fullscreen</li>
+<li>jspsych-instructions</li>
+<li>possibly have wrappers for loop nodes &amp; conditional nodes here??</li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="possible-design" class="section level2">
+<h2 class="hasAnchor">
+<a href="#possible-design" class="anchor"></a>Possible design:</h2>
+<ul>
+<li>the “display” family is used to specify the stimulus (broadly construed)
+<ul>
+<li>display_html</li>
+<li>display_text</li>
+<li>display_image</li>
+<li>display_audio</li>
+<li>display_video</li>
+<li>display_animation</li>
+</ul>
+</li>
+<li>the “response” family is used to specify a response mechanism
+<ul>
+<li>response_button</li>
+<li>response_key</li>
+<li>response_slider (continuous)</li>
+<li>response_likert (ordinal)</li>
+<li>response_select (radio or checkbox)</li>
+<li>response_mouse (???)</li>
+<li>response_text (free text??)p</li>
+</ul>
+</li>
+<li>the “SR” family is a simple construction</li>
+<li>the “survey” family: the trial is built from multiple questions; a question is a combination of a display_text + response_likert + response_select …</li>
+<li>the “iat”, “same-diff”, “categorise” seem like they could be made to fit this framework easily</li>
+</ul>
 </div>
 </div>
   </div>
